@@ -1,0 +1,60 @@
+{
+  "name": "linear-react",
+  "version": "1.0.0",
+  "description": "Visualization framework for time based data",
+  "author": "Kip Price",
+  "license": "MIT",
+  "main": "dist/",
+  "module": "dist/",
+  "types": "typings/src/index.d.ts",
+  "files": [
+    "/dist",
+    "/typings",
+    "/package.json",
+    "/README.md"
+  ],
+  "scripts": {
+    "clean": "rm -rf ./dist && rm -rf ./typings",
+    "build": "yarn build:tsc && yarn build:babel",
+    "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx\"",
+    "build:tsc": "tsc -p tsconfig.json",
+    "test": "npx jest -- -t .test.ts",
+    "prepack": "yarn clean && yarn build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
+    "@babel/runtime": "^7.12.5",
+    "@types/jest": "^26.0.15",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "babel-loader": "^8.2.2",
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "ts-jest": "^26.4.4",
+    "tslint": "^6.1.3",
+    "tslint-immutable": "^6.0.1",
+    "typescript": "^4.1.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "dependencies": {
+    "@emotion/core": "10",
+    "@emotion/styled": "10",
+    "@types/react-redux": "^7.1.11",
+    "@types/redux": "^3.6.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  }
+}
