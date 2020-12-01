@@ -1,7 +1,5 @@
-export interface IEvent<T> {
+import { IDisplayData } from './displayData';
+
+export interface IEvent<T> extends IDisplayData<T> {
     instant: Date;
-    data: T;
-    title?: string;
-    description?: string;
-    color?: string;
 }

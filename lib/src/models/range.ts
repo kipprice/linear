@@ -1,8 +1,6 @@
-export interface IRange<T> {
+import { IDisplayData } from './displayData';
+
+export interface IRange<T> extends IDisplayData<T> {
     start: Date;
     end: Date;
-    data: T;
-    title?: string;
-    description?: string;
-    color?: string;
 }
