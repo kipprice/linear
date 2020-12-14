@@ -14,11 +14,16 @@ const rootReducer = combineReducers({
     ranges
 })
 
+const RED = "#FF0000";
+const YELLOW = "#FFDD00";
+const GREEN = "#AAFF33";
+const BLUE = "#0077FF";
+
 const DEFAULT_EVENTS = [
-  { title: "A", color: "yellow", instant: new Date() },
-  { title: "B", color: "yellow", instant: add(new Date(), { years: 1}) },
-  { title: "C", color: "yellow", instant: add(new Date(), { years: 3 }) },
-  { title: "D", color: "yellow", instant: add(new Date(), { years: 4 })}
+  { title: "A", color: RED, instant: new Date() },
+  { title: "B", color: YELLOW, instant: add(new Date(), { years: 1}) },
+  { title: "C", color: BLUE, instant: add(new Date(), { years: 3 }) },
+  { title: "D", color: YELLOW, instant: add(new Date(), { years: 4 })}
 ]
 
 const DEFAULT_RANGES = [];

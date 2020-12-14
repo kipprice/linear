@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React, { ComponentType, useCallback, useMemo } from 'react';
-import { styles } from '../../../dist/helpers/styles';
+import { Column, Row } from '../../components/Flex';
+import { combineMixins, fullHeightMixin, fullWidthMixin } from '../../components/Mixins';
 import { getRelativePositionToRange, getPaddedDateRange } from '../../helpers/dateHelpers';
 import { IEvent, IRange, IPoint } from '../../models';
 import { TimelineEvent } from './event';
@@ -31,22 +32,24 @@ export const Timeline: React.FC = <T extends any>({
         return { x: left, y: top, z: 0 };
     }, [dateRange]);
 
+    const Parent = direction === 'horizontal' ? Row : Column
+
     return(
+        <Parent horizontal='center' vertical='center' mixins={combineMixins(fullHeightMixin, fullWidthMixin)}>
+            <Line direction={direction}>
+            { ranges && ranges?.map((r) => (
+                <TimelineRange<T> range={r}>
+                    { RangeChild && <RangeChild data={r.data} /> }
+                </TimelineRange> 
+            ))}
 
-        <Line direction={direction}>
-        { ranges && ranges?.map((r) => (
-            <TimelineRange<T> range={r}>
-                { RangeChild && <RangeChild data={r.data} /> }
-            </TimelineRange> 
-        ))}
-
-        { events && events?.map((ev) => (
-            <TimelineEvent<T> key={ev.instant.toString()} event={ev} position={formatRelativePositionToPoint(ev.instant)}>
-                { EventChild && <EventChild  data={ev.data} /> }
-            </TimelineEvent> 
-        ))}
-
-        </Line>
+            { events && events?.map((ev) => (
+                <TimelineEvent<T> key={ev.instant.toString()} event={ev} position={formatRelativePositionToPoint(ev.instant)} lineWidth={10}>
+                    { EventChild && <EventChild  data={ev.data} /> }
+                </TimelineEvent> 
+            ))}
+            </Line>
+        </Parent>
     );
 };
 
